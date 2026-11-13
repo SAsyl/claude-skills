@@ -10,7 +10,8 @@
 
 - `skills/<name>/SKILL.md`: Claude Code skills, plus helper `scripts/` and `references/`. See `README.md`.
 - `commands/<name>.md`: Claude Code slash commands.
-- Setup: symlink into `~/.claude/skills` and `~/.claude/commands` (see README "Install"). Check: `bash -n skills/*/scripts/*.sh`.
+- Setup: `./install.sh` (symlinks into `~/.claude`). Check: `sh -n install.sh && bash -n skills/*/scripts/*.sh`.
+- New skill: add `skills/<name>/SKILL.md`, then rerun `./install.sh`.
 
 ## Rules
 

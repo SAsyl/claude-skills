@@ -19,21 +19,35 @@ Custom [Claude Code](https://docs.claude.com/en/docs/claude-code) skills and sla
 
 ## Install
 
-Clone the repo, then symlink each item into `~/.claude` so that edits here take effect right away:
+One line, no manual clone needed:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/SAsyl/claude-skills/main/install.sh | sh
+```
+
+This clones the repo to `~/.local/share/claude-skills` and symlinks every skill and command into `~/.claude`. Run the same line again to update.
+
+From a clone:
 
 ```bash
 git clone https://github.com/SAsyl/claude-skills.git
 cd claude-skills
-mkdir -p ~/.claude/skills ~/.claude/commands
-for d in skills/*/; do ln -sfn "$PWD/$d" ~/.claude/skills/"$(basename "$d")"; done
-for f in commands/*.md; do ln -sf "$PWD/$f" ~/.claude/commands/"$(basename "$f")"; done
+./install.sh
 ```
+
+The symlinks point at the clone, so edits there take effect right away. The script stops instead of overwriting a real file or directory in `~/.claude`.
+
+| Variable | Default | Meaning |
+|----------|---------|---------|
+| `CLAUDE_SKILLS_DIR` | `~/.local/share/claude-skills` | Where the one-line install clones the repo |
+| `CLAUDE_CONFIG_DIR` | `~/.claude` | Claude Code config directory |
 
 Restart Claude Code so it picks up the new skills.
 
 ## Layout
 
 ```
+install.sh                   # symlinks skills and commands into ~/.claude
 skills/
   publish-repo/
     SKILL.md                 # skill instructions
